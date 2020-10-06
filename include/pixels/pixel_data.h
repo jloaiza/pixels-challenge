@@ -1,7 +1,7 @@
 #ifndef PIXEL_DATA
 #define PIXEL_DATA
 
-#include <stdint.h>;
+#include <stdint.h>
 
 #define INVALID_PIXEL 1
 

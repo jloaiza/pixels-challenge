@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 #include <pixels/pixel_data.h>
 #include <pixels/error_codes.h>
@@ -6,10 +7,10 @@
 // Convert to pixel data functions
 
 uint32_t onePixelData(uint32_t *height, uint32_t *width, uint32_t *depth) {
-    if (depth == 0) {
+    if (*depth == 0) {
         return INVALID_PIXEL;
 
-    } else if (depth == 1) {
+    } else if (*depth == 1) {
         return
             IS_2D
             | (*height & HEIGHT_2D_MASK) << HEIGHT_2D_OFFSET
@@ -35,13 +36,14 @@ uint32_t *PixelData(
         printf("Error: Couldn't allocate memory for the new pixels array.");
         exit(OUT_OF_MEMORY_ERROR);
     }
-    for (int index=0; index < arraySize; index++) {
+    for (int index=0; index < (int)arraySize; index++) {
         *(data+index) = onePixelData(
             ptrHeight + index,
             ptrWidth + index,
             ptrDepth + index
         );
     }
+    return data;
 }
 
 // 3D Functions
