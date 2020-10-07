@@ -8,8 +8,7 @@
 #include "../src/sort.h"
 
 void test_quicksort_no_elements(void) {
-    uint32_t elements[] = {};
-    quickSort(elements, 0);
+    quickSort(NULL, 0);
 }
 
 void test_quicksort_one_element(void) {
@@ -61,7 +60,7 @@ void test_quicksort_five_unordered_elements(void) {
 
 void test_ordered_elements(void) {
     for(int test=0; test<100; test++){
-        int length = random_number(100);
+        int length = random_number_not_zero(100);
         uint32_t *elements = random_list(length);
         uint32_t *expected_elements =
             (uint32_t *)malloc(sizeof(uint32_t)*length);
@@ -75,12 +74,15 @@ void test_ordered_elements(void) {
 
 
         TEST_ASSERT_EQUAL_UINT32_ARRAY(expected_elements, elements, length);
+
+        free(elements);
+        free(expected_elements);
     }
 }
 
 void test_unordered_elements(void) {
     for(int test=0; test<100; test++){
-        int length = random_number(100);
+        int length = random_number_not_zero(100);
         uint32_t *elements = random_list(length);
         uint32_t *expected_elements = malloc(sizeof(uint32_t)*length);
         memcpy(expected_elements, elements, sizeof(uint32_t)*length);
@@ -89,25 +91,33 @@ void test_unordered_elements(void) {
         quickSort(elements, length);
 
         TEST_ASSERT_EQUAL_UINT32_ARRAY(expected_elements, elements, length);
+
+        free(elements);
+        free(expected_elements);
     }
 }
 
-void setUp (void) {}
+// Uncomment the following block and comment other mains in other testing files
+// to test the sorting functions
 
-void tearDown (void) {}
+// void setUp (void) {
+//     set_random_seed();
+// }
 
-int main(void) {
-    UNITY_BEGIN();
+// void tearDown (void) {}
 
-    RUN_TEST(test_quicksort_no_elements);
-    RUN_TEST(test_quicksort_one_element);
-    RUN_TEST(test_quicksort_two_unordered_elements);
-    RUN_TEST(test_quicksort_two_ordered_elements);
-    RUN_TEST(test_quicksort_two_same_elements);
-    RUN_TEST(test_quicksort_five_same_elements);
-    RUN_TEST(test_quicksort_five_unordered_elements);
-    RUN_TEST(test_ordered_elements);
-    RUN_TEST(test_unordered_elements);
+// int main(void) {
+//     UNITY_BEGIN();
 
-    return UNITY_END();
-}
+//     RUN_TEST(test_quicksort_no_elements);
+//     RUN_TEST(test_quicksort_one_element);
+//     RUN_TEST(test_quicksort_two_unordered_elements);
+//     RUN_TEST(test_quicksort_two_ordered_elements);
+//     RUN_TEST(test_quicksort_two_same_elements);
+//     RUN_TEST(test_quicksort_five_same_elements);
+//     RUN_TEST(test_quicksort_five_unordered_elements);
+//     RUN_TEST(test_ordered_elements);
+//     RUN_TEST(test_unordered_elements);
+
+//     return UNITY_END();
+// }

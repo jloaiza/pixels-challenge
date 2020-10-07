@@ -4,6 +4,8 @@
 #include <pixels/pixel_data.h>
 #include <pixels/error_codes.h>
 
+#include "sort.h"
+
 // Convert to pixel data functions
 
 uint32_t onePixelData(uint32_t *height, uint32_t *width, uint32_t *depth) {
@@ -36,6 +38,7 @@ uint32_t *PixelData(
         printf("Error: Couldn't allocate memory for the new pixels array.");
         exit(OUT_OF_MEMORY_ERROR);
     }
+
     for (int index=0; index < (int)arraySize; index++) {
         *(data+index) = onePixelData(
             ptrHeight + index,
@@ -43,6 +46,9 @@ uint32_t *PixelData(
             ptrDepth + index
         );
     }
+
+    quickSort(data, arraySize);
+
     return data;
 }
 
@@ -61,7 +67,7 @@ uint32_t GetDepthFrom3DPixel(uint32_t pixelData) {
 }
 
 uint32_t Is3D(uint32_t pixelData) {
-    return pixelData & IS_3D;
+    return (pixelData & TYPE_MASK) == IS_3D;
 }
 
 // 2D Functions
@@ -75,5 +81,5 @@ uint32_t GetWidthFrom2DPixel(uint32_t pixelData) {
 }
 
 uint32_t Is2D(uint32_t pixelData) {
-    return pixelData & IS_2D;
+    return (pixelData & TYPE_MASK) == IS_2D;
 }

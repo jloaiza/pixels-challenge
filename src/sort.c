@@ -11,7 +11,7 @@ void swap(uint32_t *elements, int index1, int index2) {
 }
 
 void quickSort(uint32_t *elements, int length) {
-    if (length <= 1){
+    if (length <= 1 || elements == NULL){
         return;
     }
     uint32_t *pivotPtr = elements;

@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#define INVALID_PIXEL 1
+#define INVALID_PIXEL 0x00000001
 
 #define HEIGHT_2D_OFFSET 15
 #define WIDTH_2D_OFFSET 1
@@ -23,8 +23,9 @@
 #define HEIGHT_2D_MASK MASK_14_BITS
 #define WIDTH_2D_MASK MASK_14_BITS
 
-#define IS_3D 0x40000000
-#define IS_2D 0x80000000
+#define TYPE_MASK 0xC0000000
+#define IS_3D 0xC0000000
+#define IS_2D 0x00000000
 
 uint32_t *PixelData(
     uint32_t *ptrHeight,
@@ -33,10 +34,13 @@ uint32_t *PixelData(
     uint32_t arraySize
 );
 
-uint32_t GetHeightFromPixel(uint32_t pixelData);
-uint32_t GetWidthFromPixel(uint32_t pixelData);
-uint32_t GetDepthFromPixel(uint32_t pixelData);
-uint32_t Is2D(uint32_t pixelData);
+uint32_t GetHeightFrom3DPixel(uint32_t pixelData);
+uint32_t GetWidthFrom3DPixel(uint32_t pixelData);
+uint32_t GetDepthFrom3DPixel(uint32_t pixelData);
 uint32_t Is3D(uint32_t pixelData);
+
+uint32_t GetHeightFrom2DPixel(uint32_t pixelData);
+uint32_t GetWidthFrom2DPixel(uint32_t pixelData);
+uint32_t Is2D(uint32_t pixelData);
 
 #endif
