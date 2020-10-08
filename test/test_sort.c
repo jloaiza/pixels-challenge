@@ -97,27 +97,24 @@ void test_unordered_elements(void) {
     }
 }
 
-// Uncomment the following block and comment other mains in other testing files
-// to test the sorting functions
+void setUp (void) {
+    set_random_seed();
+}
 
-// void setUp (void) {
-//     set_random_seed();
-// }
+void tearDown (void) {}
 
-// void tearDown (void) {}
+int main(void) {
+    UNITY_BEGIN();
 
-// int main(void) {
-//     UNITY_BEGIN();
+    RUN_TEST(test_quicksort_no_elements);
+    RUN_TEST(test_quicksort_one_element);
+    RUN_TEST(test_quicksort_two_unordered_elements);
+    RUN_TEST(test_quicksort_two_ordered_elements);
+    RUN_TEST(test_quicksort_two_same_elements);
+    RUN_TEST(test_quicksort_five_same_elements);
+    RUN_TEST(test_quicksort_five_unordered_elements);
+    RUN_TEST(test_ordered_elements);
+    RUN_TEST(test_unordered_elements);
 
-//     RUN_TEST(test_quicksort_no_elements);
-//     RUN_TEST(test_quicksort_one_element);
-//     RUN_TEST(test_quicksort_two_unordered_elements);
-//     RUN_TEST(test_quicksort_two_ordered_elements);
-//     RUN_TEST(test_quicksort_two_same_elements);
-//     RUN_TEST(test_quicksort_five_same_elements);
-//     RUN_TEST(test_quicksort_five_unordered_elements);
-//     RUN_TEST(test_ordered_elements);
-//     RUN_TEST(test_unordered_elements);
-
-//     return UNITY_END();
-// }
+    return UNITY_END();
+}

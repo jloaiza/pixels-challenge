@@ -17,6 +17,10 @@ void quickSort(uint32_t *elements, int length) {
     uint32_t *pivotPtr = elements;
     int storeIndex = 1;
     for (int index=1; index < length; index++) {
+        // I thought using a <= will improve the efficiency in the following
+        // line, but it actually inserts a bug where the storeIndex get
+        // always incremented for arrays of the same number, leading to
+        // infinite recursive calls later.
         if (elements[index] < *pivotPtr)
             swap(elements, storeIndex++, index);
     }

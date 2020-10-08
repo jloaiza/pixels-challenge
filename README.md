@@ -10,6 +10,7 @@ Use this project as a reference for:
 * C public headers includes and their linking.
 * 3D party library usage in C.
 * Documentation.
+* C language practice.
 
 Also contains code related to:
 
@@ -17,6 +18,7 @@ Also contains code related to:
 * Bitwise operations.
 * Quick sort algorithm.
 * C unit testing using [Unity framework](http://www.throwtheswitch.org/unity).
+
 
 ## Specification
 
@@ -27,12 +29,10 @@ Go to the [project specification](./doc/specification.md) in the doc folder.
 
 * :white_check_mark: The pixel solution code is complete and tested.
 
-* :warning: The Unit test framework usage needs to be improved. Right now you
-  have to uncomment the `main`, `setUp` and `tearDown` functions of the test
-  file you want to run and comment the same functions in the other files.
+* :warning: The Unit test framework usage needs to be improved. Right now there
+  is a Makefile target for each test file.
 
-* :warning: The `Makefile` needs to be improved. There is only one target
-  used for testing that could've been coded better.
+* :warning: The `Makefile` needs to be improved.
 
 
 ## Testing
@@ -40,5 +40,18 @@ Go to the [project specification](./doc/specification.md) in the doc folder.
 To test the project run:
 
 ```bash
-make test
+make all
 ```
+
+
+## Learned lessons
+
+* Do not set the random seed every time a random number is generated. If
+  several calls are made immediately one after the other, the random number
+  will result in the same value always (giving you a not so random behavior).
+
+* Remember to free the memory you are not using when testing using loops.
+
+* Be careful when subtracting unsigned ints for comparison. If the numbers are
+  to big, they could overflow the sign bit of the result. Leading to unwanted
+  behaviors.

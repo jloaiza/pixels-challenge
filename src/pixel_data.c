@@ -47,6 +47,10 @@ uint32_t *PixelData(
         );
     }
 
+    // This quick sort will only work if the array elemnts are of the same
+    // pixel type. 3D pixels to 2D pixels comparison will be affected by the
+    // "type" bits and will not fullfill the specification.
+    // Modify the quickSort function to support this scenario.
     quickSort(data, arraySize);
 
     return data;

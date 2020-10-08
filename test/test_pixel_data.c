@@ -234,10 +234,6 @@ void test_one_invalid_pixel_data(void) {
     TEST_ASSERT_EQUAL_UINT32(expected_result, result);
 }
 
-
-// Uncomment the following block and comment other mains in other testing files
-// to test the pixel functions
-
 void setUp (void) {
     set_random_seed();
 }
