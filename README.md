@@ -53,5 +53,5 @@ make all
 * Remember to free the memory you are not using when testing using loops.
 
 * Be careful when subtracting unsigned ints for comparison. If the numbers are
-  to big, they could overflow the sign bit of the result. Leading to unwanted
+  too big they may overflow the sign bit of the result leading to unwanted
   behaviors.
