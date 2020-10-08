@@ -8,7 +8,7 @@ Use this project as a reference for:
 
 * C project structure.
 * C public headers includes and their linking.
-* 3D party library usage in C.
+* 3rd party library usage in C.
 * Documentation.
 * C language practice.
 
